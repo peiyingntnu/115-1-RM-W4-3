@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>W4 訪談練習 學習單</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --ground:#F4F6FA; --paper:#FFFFFF; --ink:#1F2E4A; --title:#17365D; --mute:#5E6E85; --line:#DCE3EE;
+  --zebra:#F5F7FB; --acc:#0E7C74; --acc-soft:#E1F3F1; --navy:#1F3864;
+  --paste:#EFF4FB; --paste-line:#C9D7EC; --warn:#FFF3DF; --warn-line:#F0C98A; --warn-ink:#7A4A00;
+  --goal:#1E6B4F; --ok:#1E6B4F; --ok-bg:#E4F1EA; --bad:#A02020; --bad-bg:#FAE9E9;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D131D; --paper:#141C28; --ink:#D6DFEC; --title:#EEF3FA; --mute:#95A5BA; --line:#2A3647;
+    --zebra:#172131; --acc:#5CC9BD; --acc-soft:#16302E; --navy:#9DBBE6;
+    --paste:#16233A; --paste-line:#2E4468; --warn:#34290F; --warn-line:#6B5220; --warn-ink:#F3D493;
+    --goal:#7FD3AA; --ok:#7FD3AA; --ok-bg:#16302E; --bad:#F2A0A0; --bad-bg:#3A1C1C;
+  color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D131D; --paper:#141C28; --ink:#D6DFEC; --title:#EEF3FA; --mute:#95A5BA; --line:#2A3647;
+  --zebra:#172131; --acc:#5CC9BD; --acc-soft:#16302E; --navy:#9DBBE6;
+  --paste:#16233A; --paste-line:#2E4468; --warn:#34290F; --warn-line:#6B5220; --warn-ink:#F3D493;
+  --goal:#7FD3AA; --ok:#7FD3AA; --ok-bg:#16302E; --bad:#F2A0A0; --bad-bg:#3A1C1C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:64px}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei","Heiti TC",system-ui,sans-serif;
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #F2B705;outline-offset:2px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--ground) 92%,transparent);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.crumb{font-size:14px;color:var(--mute)}
+.sp{flex:1}
+.top button,.top .lk{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:3px 11px;font-size:14px;
+  text-decoration:none;color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:24px 60px;display:grid;
+  grid-template-columns:250px minmax(0,1fr);gap:32px;align-items:start}
+.side{position:sticky;top:70px;max-height:calc(100dvh - 90px);overflow:auto}
+.tocbox summary{font-weight:700;color:var(--title);cursor:pointer;margin-bottom:6px}
+.toc{list-style:none;margin:0;padding:0;font-size:14px;line-height:1.5}
+.toc li{margin:0}
+.toc a{display:block;color:var(--mute);text-decoration:none;padding:4px 10px;border-left:2px solid transparent}
+.toc a:hover{color:var(--ink)}
+.toc a.on{color:var(--acc);border-left-color:var(--acc);font-weight:700}
+.toc .t1 a{color:var(--ink);font-weight:700;margin-top:8px}
+.toc .t2 a{padding-left:22px;font-size:13px}
+.doc{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:36px clamp(18px,4vw,52px) 52px;min-width:0}
+.dh{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--acc);font-weight:700}
+.dh h1{margin:6px 0 8px;font-size:clamp(24px,3.4vw,32px);line-height:1.3;color:var(--title);font-weight:900;text-wrap:balance}
+.subl{margin:0;color:var(--mute);font-size:14px}
+.h1{font-size:22px;color:var(--title);margin:42px 0 12px;padding-top:14px;border-top:3px solid var(--navy);font-weight:900}
+.h2{font-size:18px;color:var(--title);margin:28px 0 8px;display:flex;align-items:center;gap:10px;font-weight:700;text-wrap:balance}
+.qtag{background:var(--q);color:#fff;font-size:13px;font-weight:900;border-radius:999px;padding:1px 10px;flex:none}
+p{margin:8px 0;max-width:68ch}
+.note{font-size:14px;color:var(--mute)}
+.goal{background:var(--acc-soft);border-radius:10px;padding:10px 14px;color:var(--goal);max-width:none}
+.goal b{margin-right:10px}
+.lst{margin:8px 0;padding-left:1.4em;max-width:72ch}
+.lst li{margin:4px 0}
+.lst .lv2{list-style:circle;margin-left:1.4em;color:var(--ink)}
+.lst li b{color:var(--title)}
+.dim{color:var(--mute)}
+.paste{border:1px solid var(--paste-line);background:var(--paste);border-radius:12px;margin:14px 0;overflow:hidden}
+.ph{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--paste-line);font-size:13px;font-weight:700;color:var(--navy)}
+.ph span{flex:1}
+.copy{border:1px solid var(--paste-line);background:var(--paper);border-radius:7px;padding:2px 12px;font-size:13px}
+.copy.done{color:var(--acc);border-color:var(--acc)}
+.pb{padding:10px 16px 12px;font-size:15px}
+.pb p{margin:4px 0;max-width:none}
+.warn{background:var(--warn);border:1px solid var(--warn-line);border-radius:12px;padding:10px 16px;margin:14px 0;color:var(--warn-ink)}
+.warn p{max-width:none}
+.wh{font-weight:700}
+.tw{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.55;min-width:560px}
+th{background:var(--navy);color:#fff;text-align:left;padding:8px 10px;font-weight:700}
+:root[data-theme="dark"] th{color:#0D131D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) th{color:#0D131D}}
+td{padding:7px 10px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--zebra)}
+.blank{display:block;min-height:2.6em}
+.cap{font-weight:700;color:var(--title)}
+.fold{border:1px dashed var(--acc);border-radius:12px;margin:18px 0;padding:0 16px}
+.fold summary{cursor:pointer;padding:10px 0;font-weight:700;color:var(--acc)}
+.fold[open]{padding-bottom:10px}
+.triple{list-style:none;margin:14px 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.trow{display:grid;grid-template-columns:44px 1fr 1.9fr 1.2fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.tno{background:var(--acc-soft);color:var(--acc);font-weight:900;font-size:15px;display:flex;align-items:flex-start;justify-content:center;padding-top:14px}
+.tc{padding:10px 14px;border-left:1px solid var(--line);min-width:0}
+.tc p{margin:4px 0;max-width:none;font-size:15px}
+.tl{display:block;font-size:12px;letter-spacing:.06em;color:var(--mute);font-weight:700;margin-bottom:2px}
+.tc.ai{background:var(--zebra)}
+.tin{margin:4px 0 0}
+.tin.paste{margin:4px 0 0}
+.tin .ph{padding:5px 10px}
+.tin .pb{padding:6px 12px 8px;font-size:14.5px}
+.tin.self{border:1px dashed var(--line);border-radius:10px;padding:6px 10px}
+.tin.self .pb{padding:4px 0 0}
+.verb{background:var(--navy);color:var(--paper);border-radius:6px;padding:1px 9px;font-size:13px;font-weight:700;flex:none}
+.noai{margin-left:8px;font-size:12px;color:var(--warn-ink);background:var(--warn);border-radius:999px;padding:1px 9px}
+.ph .verb{flex:none}
+.ph .verb+span{flex:1}
+.cmd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:2px 0 6px}
+.cmd .tl{margin:0}
+.cmd code{font-family:inherit;font-weight:700;background:var(--acc-soft);color:var(--acc);border-radius:8px;padding:2px 10px;font-size:15px}
+.copy1{border:1px solid var(--line);background:var(--paper);border-radius:7px;padding:1px 10px;font-size:13px}
+.copy1.done{color:var(--acc);border-color:var(--acc)}
+.or{font-size:12px;color:var(--mute)}
+@media (max-width:1180px) and (min-width:761px){
+  .trow{grid-template-columns:44px 1fr 1fr}
+  .tno{grid-row:1/3}
+  .tc.need{grid-column:2;grid-row:1}
+  .tc.ai{grid-column:3;grid-row:1}
+  .tc.inp{grid-column:2/4;grid-row:2;border-top:1px solid var(--line)}
+}
+@media (max-width:760px){
+  .trow{grid-template-columns:1fr}
+  .tno{justify-content:flex-start;padding:8px 14px}
+  .tc{border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:14px}
+  .side{position:static;max-height:none}
+  .tocbox:not([open]){margin-bottom:0}
+}
+@media print{
+  .top,.side{display:none} .wrap{display:block;padding:0} .doc{border:0;padding:0}
+  details.fold{border:0} details.fold>*{display:block}
+  .copy{display:none}
+}
+
+/* ===== 學習單：彈性填寫欄位（2026-09-22 追加） ===== */
+.saver{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--acc-soft);
+  border:1px solid var(--acc);border-radius:12px;padding:9px 14px;margin:14px 0;font-size:.86rem;color:var(--ink)}
+.saver .sdot{width:9px;height:9px;border-radius:50%;background:var(--acc);flex:none}
+.saver.off{background:var(--warn);border-color:var(--warn-line);color:var(--warn-ink)}
+.saver.off .sdot{background:var(--warn-line)}
+.saver button{margin-left:auto;font:inherit;padding:4px 12px;border:1px solid var(--line);
+  border-radius:999px;background:var(--paper);color:var(--ink);cursor:pointer}
+.saver button:disabled{opacity:.45;cursor:not-allowed}
+.fld{margin:14px 0}
+.fh{margin:0 0 6px;font-weight:700;color:var(--title);font-size:.95rem;display:flex;
+  gap:8px;align-items:baseline;flex-wrap:wrap}
+.fhint{font-weight:400;font-size:.84rem;color:var(--mute)}
+.fin{display:block;width:100%;box-sizing:border-box;font:inherit;line-height:1.75;
+  color:var(--ink);background:var(--paste);border:1px solid var(--paste-line);border-radius:10px;
+  padding:10px 13px;resize:none;overflow:hidden;min-height:3.2em}
+.fin:focus{outline:2px solid var(--acc);outline-offset:1px;background:var(--paper)}
+.fin::placeholder{color:var(--mute);opacity:.65}
+.chk .cl{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.chk .cl li{margin:0}
+.chk label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;background:var(--zebra);
+  border:1px solid var(--line);border-radius:10px;padding:9px 13px}
+.chk input{margin:.28em 0 0;width:17px;height:17px;flex:none;accent-color:var(--acc)}
+.chk input:checked+span{color:var(--mute);text-decoration:line-through}
+.chk i{display:block;font-style:normal;font-size:.85rem;color:var(--mute);margin-top:2px;text-decoration:none}
+table.rt thead th{word-break:keep-all;font-size:.82rem;line-height:1.45}
+table.rt td.rc{padding:0;text-align:center}
+table.rt .rb{width:100%;min-height:42px;font:inherit;font-size:1.12rem;font-weight:700;border:0;
+  background:none;color:var(--mute);cursor:pointer}
+table.rt .rb[data-v="v"]{color:var(--ok);background:var(--ok-bg)}
+table.rt .rb[data-v="△"]{color:var(--warn-ink);background:var(--warn)}
+table.rt .rb[data-v="×"]{color:var(--bad);background:var(--bad-bg)}
+table.rt tbody th{background:var(--zebra);color:var(--title);text-align:left;white-space:nowrap}
+.rk{font-weight:400;color:var(--mute);font-size:.84rem;margin:0 0 6px}
+.cardwrap{margin:14px 0}
+.drawb{font:inherit;font-weight:700;padding:9px 18px;border-radius:999px;border:1px solid var(--acc);
+  background:var(--acc);color:#fff;cursor:pointer}
+.drawout{margin-left:10px;font-weight:700;color:var(--title)}
+.cards{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(248px,1fr))}
+.card{margin:0;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:12px;
+  padding:12px 15px;background:var(--paper);transition:box-shadow .2s,transform .2s;
+  display:flex;flex-direction:column}
+.card.hit{box-shadow:0 0 0 3px var(--c);transform:translateY(-2px)}
+.card .cno{margin:0;font-size:1.5rem;font-weight:900;color:var(--c);line-height:1}
+.card .ct{margin:2px 0 2px;font-weight:700;color:var(--title)}
+.card .cn{margin:0 0 8px;font-size:.84rem;color:var(--mute)}
+.card .cl{margin:0 0 4px;font-size:.8rem;font-weight:700;color:var(--c);letter-spacing:.04em}
+.card ul{margin:0;padding-left:1.1em;font-size:.89rem}
+.card ul li{margin:3px 0}
+.cdone{display:flex;gap:8px;align-items:center;margin-top:auto;padding-top:9px;
+  border-top:1px dashed var(--line);font-size:.85rem;cursor:pointer;color:var(--mute)}
+.cdone input{width:16px;height:16px;accent-color:var(--acc)}
+.rep{margin:4px 0 14px}
+table.rtb td{padding:0;vertical-align:top}
+table.rtb td textarea{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:.92rem;
+  line-height:1.65;border:0;background:none;color:var(--ink);padding:8px 10px;resize:none;
+  overflow:hidden;min-height:2.6em}
+table.rtb td textarea:focus{outline:2px solid var(--acc);outline-offset:-2px;background:var(--paper)}
+table.rtb .rmh,table.rtb .rmc{width:34px;text-align:center}
+table.rtb .rm{font:inherit;border:0;background:none;color:var(--mute);cursor:pointer;
+  font-size:1.05rem;line-height:1;padding:6px}
+table.rtb .rm:hover{color:var(--bad)}
+.addr{font:inherit;font-size:.88rem;margin-top:8px;padding:6px 14px;border-radius:999px;
+  border:1px dashed var(--acc);background:none;color:var(--acc);cursor:pointer}
+
+
+.pl{margin:10px 0}
+.inl{color:var(--acc);font-weight:700;text-decoration:none;border-bottom:2px solid var(--acc-soft)}
+.inl:hover{border-bottom-color:var(--acc)}
+/* 評量表：橫向捲動時左欄跟著留在畫面上，才知道自己在填哪一列 */
+table.rt tbody th{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--line)}
+/* 可增減表格：窄螢幕改為一列一張卡，欄名變成欄位上方的標籤（手機打字才不用左右捲） */
+@media (max-width:700px){
+  .rep .tw{overflow:visible}
+  .rep table.rtb,.rep table.rtb tbody,.rep table.rtb tr,.rep table.rtb td{display:block;width:auto;
+    min-width:0}   /* 蓋掉基礎 table{min-width:560px}，否則堆疊後仍會撐出橫向捲動 */
+  .rep table.rtb thead{display:none}
+  .rep table.rtb tr{position:relative;border:1px solid var(--line);border-radius:10px;
+    background:var(--zebra);padding:8px 10px 6px;margin:0 0 10px}
+  .rep table.rtb td{border:0;padding:0 0 7px}
+  .rep table.rtb td::before{content:attr(data-l);display:block;font-size:.78rem;font-weight:700;
+    color:var(--mute);margin:0 0 2px}
+  .rep table.rtb td textarea{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 9px}
+  .rep table.rtb td.rmc{position:absolute;top:4px;right:4px;width:auto;padding:0}
+  .rep table.rtb td.rmc::before{content:none}
+}
+@media print{
+  .saver,.drawb,.drawout,.addr,.rm,.rmh,.rmc{display:none!important}
+  .fin,table.rtb td textarea{background:none;border-color:#999;
+    background-image:repeating-linear-gradient(transparent,transparent 1.74em,#CBD2DE 1.74em,#CBD2DE calc(1.74em + 1px))}
+  .fin{min-height:5.3em}
+  .card{break-inside:avoid;border-color:#999}
+  .card.hit{box-shadow:none}
+  table.rt .rb{color:#333}
+}
+
+/* ===== W4-2（2026-09-29）三人一組、記錄者觀察 ===== */
+.names{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:8px 0 12px}
+.names label{display:block}
+.names span{display:block;font-size:.82rem;font-weight:700;color:var(--mute);margin:0 0 2px}
+.nin{display:block;width:100%;font:inherit;color:var(--ink);background:var(--paste);border:1px solid var(--paste-line);
+  border-radius:10px;padding:8px 12px}
+.nin:focus{outline:2px solid var(--acc);outline-offset:1px;background:var(--paper)}
+textarea.nin{resize:none;overflow:hidden;min-height:2.6em;line-height:1.6}
+.nin::placeholder{color:var(--mute);opacity:.65}
+table.rot{min-width:460px}
+table.rot tbody th{background:var(--zebra);color:var(--title);text-align:left;white-space:nowrap}
+table.rot td{text-align:center}
+table.rot td.mine{font-weight:700}
+table.rot td.me{background:var(--acc-soft);color:var(--acc);font-weight:900;box-shadow:inset 0 0 0 2px var(--acc)}
+.pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:14px 0 6px}
+.pick .pl2{font-weight:700;color:var(--title);font-size:.92rem}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--paper)}
+.seg button{border:0;background:none;padding:6px 16px;font-size:.92rem;color:var(--mute);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--acc);color:var(--paper);font-weight:700}
+.myrole{background:var(--acc-soft);border-radius:10px;padding:8px 14px;margin:8px 0 12px;color:var(--goal);max-width:none;font-weight:700}
+.cards.roles .card .ct{font-size:1.15rem}
+table.cntt{min-width:520px}
+table.cntt tbody th{background:var(--zebra);color:var(--title);text-align:left;white-space:nowrap}
+table.cntt td.cc{text-align:center;white-space:nowrap;width:150px}
+.cnt{display:inline-flex;align-items:center;gap:8px}
+.cnt button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);
+  font-size:1.15rem;font-weight:700;line-height:1;color:var(--ink)}
+.cnt button:active{background:var(--acc-soft)}
+.cnt output{min-width:2ch;text-align:center;font-weight:900;font-size:1.2rem;color:var(--title)}
+#logdraw{margin:0 0 0 10px}
+@media print{.pick,.cnt button,#logdraw{display:none!important}}
+</style>
+</head>
+<body>
+<div class="top"><div class="topin"><span class="crumb">學生用｜W4 訪談練習學習單</span>
+<span class="sp"></span><a class="lk" href="prep.html">🗓 訪談的準備</a><a class="lk" href="w04-sheet.docx" download>⬇ 紙本 Word 版</a><button type="button" id="theme" aria-label="切換深淺色">◐</button>
+<button type="button" id="print">列印</button></div></div>
+<div class="wrap">
+  <aside class="side"><details class="tocbox"><summary>目錄</summary><ol class="toc"><li class="t1"><a href="#s1">零、三人一組，三輪輪替</a></li><li class="t1"><a href="#s2">一、訪談前：我準備好了嗎</a></li><li class="t1"><a href="#s3">二、我當受訪者：那張說書人卡</a></li><li class="t1"><a href="#s4">三、我當訪談者：大綱與追問</a></li><li class="t1"><a href="#s18">四、我當記錄者的觀察與抽卡</a></li><li class="t2"><a href="#s19">（一）數一數，五種行為</a></li><li class="t2"><a href="#s20">（二）觀察紀錄表</a></li><li class="t2"><a href="#s21">（三）抽卡的時機與紀錄</a></li><li class="t2"><a href="#s22">（四）訪談後的回饋</a></li><li class="t1"><a href="#s5">五、狀況卡的抽法與接法</a></li><li class="t1"><a href="#s6">六、六個階段的重點與評量</a></li><li class="t2"><a href="#s7">（一）抵達</a></li><li class="t2"><a href="#s8">（二）介紹研究</a></li><li class="t2"><a href="#s9">（三）開始訪談</a></li><li class="t2"><a href="#s10">（四）訪談進行過程中</a></li><li class="t2"><a href="#s11">（五）結束訪談</a></li><li class="t2"><a href="#s12">（六）訪談之後</a></li><li class="t1"><a href="#s13">七、訪談結束當天（原件三、）</a></li><li class="t1"><a href="#s14">八、接到 W11 的個人作業</a></li><li class="t1"><a href="#s15">九、怎麼寫訪談大綱（最多 10 題）</a></li><li class="t2"><a href="#s16">四個最常見的毛病</a></li><li class="t2"><a href="#s17">我的訪談大綱草稿</a></li></ol></details></aside>
+  <main class="doc">
+    <header class="dh"><span class="eyebrow">115-1 教育與社會科學研究法｜第 4 週（9/29）｜學生用</span><h1>W4 課堂訪談練習｜學習單</h1><p class="subl">115-1 教育與社會科學研究法｜第 4 週（9/29）　田野實察與訪談之準備</p><p class="subl">每個填寫框都會隨你打的字自動長高，不必擔心寫不下；表格可以按「＋ 再加一列」。</p></header>
+<div class="saver"><span class="sdot"></span><span id="sstat">填寫內容只存在你自己的瀏覽器，不會上傳，老師看不到。</span><button type="button" id="clearall">清除本頁填寫</button></div>
+<h2 id="s1" class="h1">零、三人一組，三輪輪替</h2><p>每組三人，共跑三輪。三輪下來，每個人都當過一次訪談者、一次受訪者、一次記錄者。</p><p class="fh">組員<span class="fhint">先填三個名字，下方輪替表會自動代入</span></p><div class="names"><label><span>組員 A</span><textarea class="nin" rows="1" data-k="n_a" placeholder="名字"></textarea></label><label><span>組員 B</span><textarea class="nin" rows="1" data-k="n_b" placeholder="名字"></textarea></label><label><span>組員 C</span><textarea class="nin" rows="1" data-k="n_c" placeholder="名字"></textarea></label></div><div class="tw"><table class="rot" id="rot"><thead><tr><th scope="col">輪次</th><th scope="col">訪談者</th><th scope="col">受訪者</th><th scope="col">記錄者</th></tr></thead><tbody><tr data-r="1"><th scope="row">第一輪</th><td data-p="a"></td><td data-p="b"></td><td data-p="c"></td></tr><tr data-r="2"><th scope="row">第二輪</th><td data-p="b"></td><td data-p="c"></td><td data-p="a"></td></tr><tr data-r="3"><th scope="row">第三輪</th><td data-p="c"></td><td data-p="a"></td><td data-p="b"></td></tr></tbody></table></div><div class="pick"><span class="pl2">我是</span><div class="seg" data-k="me" role="group" aria-label="我是哪一位組員"><button type="button" data-v="a">A</button><button type="button" data-v="b">B</button><button type="button" data-v="c">C</button></div><span class="pl2">現在是</span><div class="seg" data-k="rnd" role="group" aria-label="現在第幾輪"><button type="button" data-v="1">第一輪</button><button type="button" data-v="2">第二輪</button><button type="button" data-v="3">第三輪</button></div></div><p class="myrole" id="myrole" aria-live="polite"></p><ul class="cards roles"><li class="card" data-role="訪談者" style="--c:#2F6DB5"><p class="ct">訪談者</p><p class="cn">問與追問</p><p class="cl">這一輪要做</p><ul><li>照第三節的大綱進行，依六個階段從開場走到結尾。</li><li>每個核心題至少追問一次，向對方要例子或要過程。</li><li>遇到突發狀況現場處理，紙上只記關鍵字。</li></ul></li><li class="card" data-role="受訪者" style="--c:#B26D08"><p class="ct">受訪者</p><p class="cn">說自己的經驗</p><p class="cl">這一輪要做</p><ul><li>先挑一張說書人卡，開場前不說原因。</li><li>回答用自己的真實經驗，不編故事。</li><li>記錄者亮出狀況卡時，從下一個回答開始演出那個狀況。</li></ul></li><li class="card" data-role="記錄者" style="--c:#7048B0"><p class="ct">記錄者</p><p class="cn">看、記、抽卡</p><p class="cl">這一輪要做</p><ul><li>不插話，也不替訪談者提示題目。</li><li>依第四節填觀察紀錄，並數五種行為的次數。</li><li>在適當時機抽狀況卡，悄悄亮給受訪者看。</li></ul></li></ul><p class="fh">每一輪的流程<span class="fhint">時間為建議，可依課堂調整</span></p><ol class="lst"><li>準備約 1 分鐘，受訪者挑卡，記錄者備好觀察紀錄表。</li><li>訪談 5–8 分鐘。</li><li>回饋約 2 分鐘，記錄者先說，受訪者再說。</li><li>換角，進入下一輪。</li></ol><div class="fld"><p class="fh">我這一組坐在教室的哪個位置</p><textarea class="fin" data-k="f1" rows="1" placeholder="在這裡寫…"></textarea></div><p class="note">三輪跑完才進大場討論。每一輪換人當訪談者，新的受訪者要重新挑一張說書人卡。</p>
+<h2 id="s2" class="h1">一、訪談前：我準備好了嗎</h2>
+<div class="fld chk"><p class="fh">上課練習用的簡化版：</p><ul class="cl"><li><label><input type="checkbox" data-k="c2"><span>訪談約定<i>事先詢問接受訪談的意願、確定訪談時間及地點。</i></span></label></li><li><label><input type="checkbox" data-k="c3"><span>攜帶訪談工具<i>訪談問題清單、紙、筆和錄音機；需檢查參考資料是否齊備。</i></span></label></li><li><label><input type="checkbox" data-k="c4"><span>我知道自己這輪是哪個角色，也知道要記什麼</span></label></li><li><label><input type="checkbox" data-k="c5"><span>我看過六個階段的重點（第六節）</span></label></li></ul></div>
+<p class="pl">正式訪談的完整準備——邀請信、確認信、時間配置、地點原則、裝備清單、開場口頭說明——見 <a class="inl" href="prep.html">《115-1 訪談的準備》</a>。那一份填一次就會自動代入三封信，W11 前要交的那次訪談會用到。</p>
+<p class="note">本堂練習不必簽同意書、不必錄音；正式訪談時這兩項都是必要的。</p>
+<h2 id="s3" class="h1">二、我當受訪者：那張說書人卡</h2>
+<p>輪到你當受訪者時，先從說書人卡（Dixit）裡挑一張代表「學習壓力」的卡。先不要說原因——那是訪談者的第 1 題。</p><p>記錄者可能在訪談中亮一張狀況卡給你看（第五節）。看到之後，從下一個回答開始演出那個狀況，內容仍用你自己的真實經驗。</p>
+<div class="fld"><p class="fh">我挑的卡是哪一張（描述卡面），以及為什麼它代表「學習壓力」<span class="fhint">先寫在這裡，訪談時看訪談者問不問得出來</span></p><textarea class="fin" data-k="f6" rows="3" placeholder="在這裡寫…"></textarea></div>
+<div class="fld"><p class="fh">訪談結束後回頭看：訪談者有沒有問出我原本想講、但沒講出來的事？是哪一件？<span class="fhint">這一格在訪談之後才填</span></p><textarea class="fin" data-k="f7" rows="3" placeholder="在這裡寫…"></textarea></div>
+<h2 id="s4" class="h1">三、我當訪談者：大綱與追問</h2>
+<p>以下六題是這次練習的訪談大綱。照著問只是起點——真正的內容在你的追問裡。</p>
+<ul class="lst"><li class="lv1"><b>（1）</b><span class="">請問是什麼原因讓你挑選這張圖片作為代表？請問你在學習過程中，感受過什麼樣壓力？為什麼會產生這樣的壓力？</span></li><li class="lv1"><b>（2）</b><span class="">請說明一下當時面對壓力的過程？</span></li><li class="lv1"><b>（3）</b><span class="">當下你對於這樣學習壓力有什麼感受？</span></li><li class="lv1"><b>（4）</b><span class="">最後有試圖解決壓力背後的問題嗎？解決（或未解決）的關鍵因素是？</span></li><li class="lv1"><b>（5）</b><span class="">你認為這次學習的壓力對於你未來有什麼影響？</span></li></ul>
+<p class="fh">我實際問出口的追問<span class="fhint">一列一個追問；練習中先記關鍵字，三輪結束再補完</span></p><div class="rep" data-k="rep2" data-cols="4" data-start="4"><div class="tw"><table class="rtb"><thead><tr><th scope="col">第幾輪</th><th scope="col">對應第幾題</th><th scope="col">我問了什麼</th><th scope="col">受訪者的反應（多講了還是收起來）</th><th class="rmh"></th></tr></thead><tbody></tbody></table></div><button type="button" class="addr">＋ 再加一列</button></div>
+<div class="fld"><p class="fh">哪一個追問讓受訪者講出你原本問不到的東西？你當時是怎麼問的（請寫原話）<span class="fhint">寫原話，不要寫「我追問了他的感受」</span></p><textarea class="fin" data-k="f8" rows="3" placeholder="在這裡寫…"></textarea></div>
+<h2 id="s18" class="h1">四、我當記錄者的觀察與抽卡</h2><p>記錄者不插話，也不替訪談者提示。任務有三件。第一，把訪談的過程記成資料。第二，在適當的時機抽狀況卡，悄悄亮給受訪者看。第三，訪談結束後用紀錄回饋，先講看到的事實，再講自己的推測。</p><h3 id="s19" class="h2">（一）數一數，訪談者的五種行為</h3><p>訪談進行時，看到一次就按一下「＋」。按錯了可以按「−」改回來。</p><div class="tw"><table class="cntt"><thead><tr><th scope="col">行為</th><th scope="col">算一次的情況</th><th scope="col">這一輪的次數</th></tr></thead><tbody><tr><th scope="row">追問</th><td>問「可以講一次嗎」「那後來呢」，向受訪者要例子或要過程</td><td class="cc"><div class="cnt" data-k="o1"></div></td></tr><tr><th scope="row">摘要回應</th><td>把受訪者剛說的話濃縮說回去，確認自己有沒有聽對</td><td class="cc"><div class="cnt" data-k="o2"></div></td></tr><tr><th scope="row">等待</th><td>問完之後安靜等三秒以上，沒有急著補話或換題</td><td class="cc"><div class="cnt" data-k="o3"></div></td></tr><tr><th scope="row">封閉式提問</th><td>問「會不會」「有沒有」，一句是或不是就答完</td><td class="cc"><div class="cnt" data-k="o4"></div></td></tr><tr><th scope="row">雙重提問</th><td>一句話裡問了兩件事</td><td class="cc"><div class="cnt" data-k="o5"></div></td></tr></tbody></table></div><p class="note">次數只是討論的起點。追問很多也未必問得深，要回頭看有沒有問出新的東西。</p><h3 id="s20" class="h2">（二）觀察紀錄表</h3><p class="fh">一列一件事<span class="fhint">事實欄只寫錄得下來的東西，像是原話、笑了、停了五秒。推測放到最右欄。</span></p><div class="rep" data-k="rep5" data-cols="4" data-start="6"><div class="tw"><table class="rtb"><thead><tr><th scope="col">時間點（第幾分鐘或第幾題）</th><th scope="col">六階段的哪一段</th><th scope="col">我看到聽到的事實</th><th scope="col">我的疑問或推測</th><th class="rmh"></th></tr></thead><tbody></tbody></table></div><button type="button" class="addr">＋ 再加一列</button></div><h3 id="s21" class="h2">（三）抽狀況卡的時機與紀錄</h3><ul class="lst"><li>訪談進行約兩分鐘後再抽，讓訪談者先找到節奏。</li><li>等訪談者問完一題、受訪者答完一段的自然停頓再亮卡，不打斷正在說話的人。</li><li>一輪抽一張，最多兩張。</li><li>亮卡時不出聲，卡面只給受訪者看。</li></ul><p>抽卡的按鈕在 <a class="inl" href="#s5">第五節</a>。抽完按「記到我的抽卡紀錄」，這裡會自動新增一列。</p><div class="rep" data-k="rep6" data-cols="4" data-start="2"><div class="tw"><table class="rtb"><thead><tr><th scope="col">抽到哪一張</th><th scope="col">抽卡的時機（第幾分鐘、第幾題）</th><th scope="col">訪談者怎麼接（寫原話）</th><th scope="col">我看到的效果</th><th class="rmh"></th></tr></thead><tbody></tbody></table></div><button type="button" class="addr">＋ 再加一列</button></div><h3 id="s22" class="h2">（四）訪談後的回饋</h3><p>第六節評量表裡的「互評」，由記錄者依觀察紀錄口頭告訴訪談者，訪談者再填進自己的評量表。</p><div class="fld"><p class="fh">我要回饋給訪談者的三件事<span class="fhint">先說一件看到的事實，再說一件看到但不確定的事，最後給一個下一輪可以試的具體做法</span></p><textarea class="fin" data-k="f60" rows="4" placeholder="在這裡寫…"></textarea></div><div class="fld chk"><p class="fh">交出紀錄前自我檢核：</p><ul class="cl"><li><label><input type="checkbox" data-k="c61"><span>事實欄沒有「很緊張」「不太好」這類判斷的詞</span></label></li><li><label><input type="checkbox" data-k="c62"><span>我的推測都放在推測欄</span></label></li><li><label><input type="checkbox" data-k="c63"><span>抽卡前有等自然的停頓，沒有打斷說話的人</span></label></li><li><label><input type="checkbox" data-k="c64"><span>整輪我沒有替訪談者回答或提示題目</span></label></li></ul></div>
+<h2 id="s5" class="h1">五、狀況卡的抽法與接法</h2><p>狀況卡模擬訪談中常見的三種情形。記錄者在適當時機抽一張，悄悄亮給受訪者看，訪談者看不到卡面。受訪者從下一個回答開始演出那個狀況，內容仍用自己的真實經驗。訪談者事前不知道卡面，要當場判斷怎麼接。</p><p class="fh">記錄者線上抽卡<span class="fhint">請把螢幕轉向受訪者再按</span></p><div class="cardwrap"><button type="button" id="draw" class="drawb">🎲 抽一張狀況卡</button><span class="drawout" id="drawout"></span><button type="button" id="logdraw" class="addr" hidden>＋ 記到我的抽卡紀錄</button><ul class="cards sit"><li class="card" data-i="0" style="--c:#B26D08"><p class="cno">①</p><p class="ct">受訪者答非所問</p><p class="cn">需拉回主題</p><p class="cl">可以怎麼接</p><ul><li>先承接再轉：「這點很有意思，我想先回到剛才那個……」</li><li>把問題縮小到一個具體場景：「那次考試前的那個晚上，你在做什麼？」</li><li>不要直接說「這不是我問的」——受訪者會開始猜你要什麼答案。</li></ul><label class="cdone"><input type="checkbox" data-k="k9"><span>我這輪接到這張</span></label></li><li class="card" data-i="1" style="--c:#2F6DB5"><p class="cno">②</p><p class="ct">受訪者回答過於簡略</p><p class="cn">需追問</p><p class="cl">可以怎麼接</p><ul><li>要例子不要定義：「可以講一次實際發生的嗎？」</li><li>要過程不要結論：「那後來呢？」「當下你做了什麼？」</li><li>沉默三秒也是追問——先不要急著換下一題。</li></ul><label class="cdone"><input type="checkbox" data-k="k10"><span>我這輪接到這張</span></label></li><li class="card" data-i="2" style="--c:#7048B0"><p class="cno">③</p><p class="ct">受訪者說個不停、欲罷不能</p><p class="cn">需巧妙結束引導入下一題</p><p class="cl">可以怎麼接</p><ul><li>抓一個他自己說過的詞當橋：「你剛提到『撐過去』，我想多問這個——」</li><li>用時間提示收束：「這部分我先記下來，我們時間還剩一半，我想確認另一件事。」</li><li>先摘要再轉題：摘要讓受訪者覺得被聽見，比硬轉題不傷關係。</li></ul><label class="cdone"><input type="checkbox" data-k="k11"><span>我這輪接到這張</span></label></li></ul></div><p class="fh">我接到的狀況與處理<span class="fhint">沒處理好也照實寫——失敗的紀錄才看得出下次要改什麼</span></p><div class="rep" data-k="rep3" data-cols="4" data-start="3"><div class="tw"><table class="rtb"><thead><tr><th scope="col">第幾輪</th><th scope="col">抽到哪一張</th><th scope="col">我當下說了什麼</th><th scope="col">有效嗎？下次會怎麼改</th><th class="rmh"></th></tr></thead><tbody></tbody></table></div><button type="button" class="addr">＋ 再加一列</button></div>
+<h2 id="s6" class="h1">六、六個階段的重點與評量</h2>
+<p>訪談進行分六個階段（原件內容）。先讀一遍，訪談後再用它檢查自己漏了哪一段。</p>
+<h3 id="s7" class="h2">（一）抵達</h3>
+<ul class="lst"><li class="lv1"><span class="">會面後的最初幾分鐘可能會深深影響研究者與受訪者之間關係的建立。受訪者一開始可能會感到不安、或甚至帶點敵意，研究者此時必須扮演客人的角色，且同時不露痕跡地展現自信及處之泰然的樣子，主動交談。</span></li><li class="lv1"><span class="">可避免提及研究主題，直到訪談正式開始。</span></li></ul>
+<h3 id="s8" class="h2">（二）介紹研究</h3>
+<ul class="lst"><li class="lv1"><span class="">研究者藉由介紹研究主題開始帶領雙方之間的互動，包含清楚重申研究的目的和性質、再次保證保密性、並且徵得對方同意錄下訪談的過程。</span></li><li class="lv1"><span class="">請受訪者簽署接受訪談的同意書。</span></li><li class="lv1"><span class="">確認受訪者明白他／她的權利，隨時可以停止受訪。</span></li><li class="lv1"><span class="">另外還要確定環境夠安靜、隱密及舒適，讓訪談的進行不會受到干擾，尤其需要注意是否有太干擾的背景音。</span></li></ul>
+<h3 id="s9" class="h2">（三）開始訪談</h3>
+<ul class="lst"><li class="lv1"><span class="">雖然一般可能會認為以中性問題開始比用有關私人細節的問題（如受訪者年齡、或感情狀況等）來得好，然而一開始就得知受訪者的個人資料會有助於問題的構思，在訪談中途詢問關於背景事實的資訊也會打斷平順的訪談進行。</span></li><li class="lv1"><span class="">受訪者一開始就明白他們的角色是要「敞開心胸」給予完整的回答，因此從熟悉的主題開始談起對受訪者來說會最輕鬆。</span></li></ul>
+<h3 id="s10" class="h2">（四）訪談進行過程中</h3>
+<ul class="lst"><li class="lv1"><span class="">研究者引導受訪者一一討論主題，包括研究者預設的主題還有從訪談中出現的主題，每項主題都用一系列的追蹤問題和探究進行深入探討，此時受訪者會以比平常更深刻且專注的層次進行思考，並發現可能蟄伏於日常生活中的構想、想法和感覺。</span></li><li class="lv1"><span class="">訪談過程中如有必要時，請留給受訪者思考時間，但請注意整個訪談時間。</span></li></ul>
+<h3 id="s11" class="h2">（五）結束訪談</h3>
+<ul class="lst"><li class="lv1"><span class="">大約在訪談結束前的五到十分鐘，研究者可以示意訪談已經接近尾聲，讓受訪者逐漸回到日常生活的社交交談層次，在這時如「最後一個主題……」或「在最後的幾分鐘裡……」等用詞很實用。</span></li><li class="lv1"><span class="">在此階段，研究者必須確定受訪者沒有遺漏任何內容，如未表達完的感覺、或者還有很重要的議題沒提到。</span></li></ul>
+<h3 id="s12" class="h2">（六）訪談之後</h3>
+<ul class="lst"><li class="lv1"><span class="">錄音機關掉之後的發展也很重要，研究者熱忱地感謝受訪者，並簡短地說明受訪者對研究的貢獻，並開始協助受訪者離開訪談的狀態，同時應該再次重申保密性或者訪談資料的用途。</span></li><li class="lv1"><span class="">可以禮貌性詢問若逐字稿整理完備之後，若還有問題是否可以聯繫受訪者確認。</span></li><li class="lv1"><span class="">確認受訪者是否需要看過逐字稿，並約定時間寄送。</span></li><li class="lv1"><span class="">此階段也是回答受訪者在訪談當中所提出的問題的時機。</span></li><li class="lv1"><span class="">有時從訪談中離開會激發受訪者最後的思考，甚至提供新的資訊；如果內容重要，研究者可以打開錄音機請受訪者重述，也可以在訪談之後再做筆記。</span></li></ul>
+<p class="fh">評量表（線上版：每格點一下循環 v → △ → × → 空白）</p><p class="cap rk">做到打 v　部分做到打 △　未做到打 ×</p><div class="tw"><table class="rt"><thead><tr><th></th><th scope="col">（一）抵達</th><th scope="col">（二）介紹研究</th><th scope="col">（三）開始訪談</th><th scope="col">（四）訪談進行過程中</th><th scope="col">（五）結束訪談</th><th scope="col">（六）訪談之後</th></tr></thead><tbody><tr><th scope="row">自評</th><td class="rc"><button type="button" class="rb" data-k="r0_0" aria-label="自評／（一）抵達">·</button></td><td class="rc"><button type="button" class="rb" data-k="r0_1" aria-label="自評／（二）介紹研究">·</button></td><td class="rc"><button type="button" class="rb" data-k="r0_2" aria-label="自評／（三）開始訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r0_3" aria-label="自評／（四）訪談進行過程中">·</button></td><td class="rc"><button type="button" class="rb" data-k="r0_4" aria-label="自評／（五）結束訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r0_5" aria-label="自評／（六）訪談之後">·</button></td></tr><tr><th scope="row">互評（記錄者）</th><td class="rc"><button type="button" class="rb" data-k="r1_0" aria-label="互評（記錄者）／（一）抵達">·</button></td><td class="rc"><button type="button" class="rb" data-k="r1_1" aria-label="互評（記錄者）／（二）介紹研究">·</button></td><td class="rc"><button type="button" class="rb" data-k="r1_2" aria-label="互評（記錄者）／（三）開始訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r1_3" aria-label="互評（記錄者）／（四）訪談進行過程中">·</button></td><td class="rc"><button type="button" class="rb" data-k="r1_4" aria-label="互評（記錄者）／（五）結束訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r1_5" aria-label="互評（記錄者）／（六）訪談之後">·</button></td></tr><tr><th scope="row">受訪者回饋</th><td class="rc"><button type="button" class="rb" data-k="r3_0" aria-label="受訪者回饋／（一）抵達">·</button></td><td class="rc"><button type="button" class="rb" data-k="r3_1" aria-label="受訪者回饋／（二）介紹研究">·</button></td><td class="rc"><button type="button" class="rb" data-k="r3_2" aria-label="受訪者回饋／（三）開始訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r3_3" aria-label="受訪者回饋／（四）訪談進行過程中">·</button></td><td class="rc"><button type="button" class="rb" data-k="r3_4" aria-label="受訪者回饋／（五）結束訪談">·</button></td><td class="rc"><button type="button" class="rb" data-k="r3_5" aria-label="受訪者回饋／（六）訪談之後">·</button></td></tr></tbody></table></div>
+<div class="fld"><p class="fh">被打 △ 或 × 的那一格，實際發生了什麼事<span class="fhint">寫事實，不要寫「做得不夠好」</span></p><textarea class="fin" data-k="f36" rows="3" placeholder="在這裡寫…"></textarea></div>
+<div class="fld"><p class="fh">三輪下來，我重複犯的是哪一個毛病<span class="fhint">一輪看不出來，三輪才看得出模式——這一格是今天最重要的一格</span></p><textarea class="fin" data-k="f37" rows="2" placeholder="在這裡寫…"></textarea></div>
+<h2 id="s13" class="h1">七、訪談結束當天（原件三、）</h2>
+<p class="note">訪談結束當天儘量寫下訪談時的感覺、觀察和彙整理資料，並準備後續訪談資料。</p>
+<div class="fld"><p class="fh">當下的感覺<span class="fhint">包括不舒服、尷尬、想趕快結束的那些時刻——這些在正式訪談會再出現一次</span></p><textarea class="fin" data-k="f38" rows="3" placeholder="在這裡寫…"></textarea></div>
+<div class="fld"><p class="fh">觀察到但錄音錄不到的事<span class="fhint">表情、停頓、環境、他不想談哪個話題</span></p><textarea class="fin" data-k="f39" rows="3" placeholder="在這裡寫…"></textarea></div>
+<div class="fld"><p class="fh">如果明天要再訪同一個人，我會改哪一件事</p><textarea class="fin" data-k="f40" rows="2" placeholder="在這裡寫…"></textarea></div>
+<h2 id="s14" class="h1">八、接到 W11 的個人作業</h2>
+<p>W4 的個人作業要完成一次真正的訪談與觀察（W11 前完成）。今天練到的東西直接用得上：</p>
+<div class="fld chk"><ul class="cl"><li><label><input type="checkbox" data-k="c41"><span>把這份學習單留著<i>正式訪談前一天再看一次第六節的評量表與第七節的反思</i></span></label></li><li><label><input type="checkbox" data-k="c42"><span>訪談大綱初稿要先給老師看<i>課綱規定；大綱是約訪之前的事，別等到約好時間才擬</i></span></label></li><li><label><input type="checkbox" data-k="c43"><span>知情同意書須含 AI 轉錄勾選項<i>詳課綱「注意事項」之訪談資料特別條款</i></span></label></li><li><label><input type="checkbox" data-k="c44"><span>音檔以 AI 協助轉逐字稿後必須校對<i>轉錄會錯字、會漏句、會把兩個人講的話併在一起</i></span></label></li><li><label><input type="checkbox" data-k="c45"><span>觀察記錄整理成觀察札記<i>與逐字稿一起繳</i></span></label></li></ul></div>
+<p class="pl">約訪之前先把 <a class="inl" href="prep.html">《115-1 訪談的準備》</a> 走一遍：填一次基本資料，邀請信、確認信、提醒信會自動代入，不必自己改署名。</p>
+<div class="warn"><p class="wh">⚠ 正式訪談的資料紅線</p><p>正式作業的訪談另有規定：原始可識別資料（未去識別化的音檔、逐字稿、姓名與校名）不得上傳外部 AI 或雲端轉錄服務。</p><p>同意書須含 AI 轉錄勾選項；去識別化 ≠ 不可辨識——獨特的身分組合仍可能被反推。</p></div>
+<h2 id="s15" class="h1">九、怎麼寫訪談大綱（最多 10 題）</h2>
+<p>上限 10 題不是為了省事。一場 60 分鐘的半結構訪談，真正問得完的核心題大約 5–6 題——因為每一題後面都要追問兩三次，而追問才是資料。題目開到 20 題，結果一定是每題都只問到表面，或是照念到第 12 題就沒時間了。</p>
+<div class="tw"><table><colgroup><col style="width:14.5%"><col style="width:39.5%"><col style="width:46.1%"></colgroup><thead><tr><th scope="col">結構</th><th scope="col">怎麼寫</th><th scope="col">為什麼</th></tr></thead><tbody><tr><td>暖身　1–2 題</td><td>具體、好答、不涉及評價。例如「可以先講一下你現在的工作嗎？」</td><td>作用是讓受訪者習慣『我講、你聽』的節奏，不是蒐集資料。</td></tr><tr><td>核心　5–6 題</td><td>一題一個主題，照經驗發生的順序排，不要照你的理論架構排。</td><td>受訪者是按時間記事的；照架構跳著問，他會一直要重新定位自己。</td></tr><tr><td>收尾　1–2 題</td><td>回顧與補遺：「還有什麼我沒問到、但你覺得重要的？」</td><td>這一題常常問出整場最有用的東西——因為那是他想講而你沒想到的。</td></tr></tbody></table></div>
+<h3 id="s16" class="h2">四個最常見的毛病</h3>
+<div class="tw"><table><colgroup><col style="width:12.5%"><col style="width:19.7%"><col style="width:30.3%"><col style="width:37.5%"></colgroup><thead><tr><th scope="col">毛病</th><th scope="col">長什麼樣</th><th scope="col">例子</th><th scope="col">怎麼改</th></tr></thead><tbody><tr><td>雙重提問</td><td>一題問兩件事</td><td>「你覺得這個政策有幫助嗎？學校怎麼配合？」</td><td>受訪者通常只答後半，前半就這樣消失了。拆成兩題。</td></tr><tr><td>封閉式起手</td><td>問「會不會」「有沒有」</td><td>「你會不會用 AI 改作業？」</td><td>得到「會」就結束了。改成「可以講一次你最近用它做什麼嗎？」</td></tr><tr><td>預設前提</td><td>題目先斷定某件事存在</td><td>「這個工具在你的評量流程裡扮演什麼角色？」</td><td>已經假設它有角色。先問「你的評量流程長什麼樣子？」</td></tr><tr><td>沒有追問設計</td><td>只寫主題、沒想下一句</td><td>核心題後面一片空白</td><td>每個核心題先預備兩個追問：要例子（「可以講一次嗎」）、要過程（「那後來呢」）。</td></tr></tbody></table></div>
+<p class="note">今天三輪練習裡最常出現的，就是第四項——大綱十題都寫好了，但每一題下面都是空白，到現場只能照念。</p>
+<h3 id="s17" class="h2">我的訪談大綱草稿</h3>
+<p class="fh">一列一題，最多 10 題；每個核心題都要寫追問<span class="fhint">暖身 1–2 題／核心 5–6 題／收尾 1–2 題</span></p><div class="rep" data-k="rep4" data-cols="4" data-start="6"><div class="tw"><table class="rtb"><thead><tr><th scope="col">題號</th><th scope="col">題目</th><th scope="col">這題要回答我研究問題的哪一部分</th><th scope="col">預備的兩個追問</th><th class="rmh"></th></tr></thead><tbody></tbody></table></div><button type="button" class="addr">＋ 再加一列</button></div>
+<div class="fld"><p class="fh">我打算訪談誰、為什麼是這個人<span class="fhint">先寫雛形，不必定稿</span></p><textarea class="fin" data-k="f46" rows="3" placeholder="在這裡寫…"></textarea></div>
+<div class="fld chk"><p class="fh">交初稿前自我檢核（六項都要能打勾）：</p><ul class="cl"><li><label><input type="checkbox" data-k="c47"><span>每一題都只問一件事（沒有「並且」「以及」「呢」串起來的兩件事）</span></label></li><li><label><input type="checkbox" data-k="c48"><span>沒有一題可以用「是」或「不是」答完</span></label></li><li><label><input type="checkbox" data-k="c49"><span>沒有一題預先斷定了我還沒問到的事</span></label></li><li><label><input type="checkbox" data-k="c50"><span>每個核心題下面至少寫了兩個追問</span></label></li><li><label><input type="checkbox" data-k="c51"><span>核心題不超過 6 題、全部不超過 10 題</span></label></li><li><label><input type="checkbox" data-k="c52"><span>每一題我都寫得出「這題是要回答我研究問題的哪一部分」</span></label></li></ul></div>
+<p class="goal deliver"><b>交付物</b>交出去的東西：訪談大綱初稿（先給老師看）→ 知情同意書 → 逐字稿（校對過）→ 觀察札記。期限與繳交方式依老師 Moodle 公告。</p>
+  </main>
+</div>
+<script>
+(function(){
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('w3-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
+  document.getElementById('theme').onclick=function(){
+    var dark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: dark)').matches);
+    var nt=dark?'light':'dark';root.setAttribute('data-theme',nt);try{localStorage.setItem('w3-theme',nt)}catch(e){}
+  };
+  document.getElementById('print').onclick=function(){
+    [].forEach.call(document.querySelectorAll('details'),function(d){d.open=true});window.print();
+  };
+  // 寬螢幕展開目錄（手機維持收起）；展開後版面會變，若網址帶 #錨點就重新對齊
+  if(!matchMedia('(max-width:900px)').matches){var tb=document.querySelector('.tocbox');if(tb)tb.open=true}
+  if(location.hash){var el=document.getElementById(location.hash.slice(1));if(el)el.scrollIntoView()}
+  // 複製 prompt
+  [].forEach.call(document.querySelectorAll('.paste'),function(box){
+    var b=box.querySelector('.copy');
+    b.onclick=function(){
+      var txt=[].map.call(box.querySelectorAll('.pb p'),function(p){return p.textContent}).join('\n');
+      function ok(){b.textContent='已複製';b.classList.add('done');setTimeout(function(){b.textContent='複製';b.classList.remove('done')},1600)}
+      function fallback(){var r=document.createRange();r.selectNodeContents(box.querySelector('.pb'));
+        var s=getSelection();s.removeAllRanges();s.addRange(r);
+        try{document.execCommand('copy');ok()}catch(e){b.textContent='已選取，請按 ⌘C'}}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,fallback)}else{fallback()}
+    };
+  });
+  // 複製單一指令
+  [].forEach.call(document.querySelectorAll('.copy1'),function(b){b.onclick=function(){
+    var txt=b.getAttribute('data-t');
+    function ok(){b.textContent='已複製';b.classList.add('done');setTimeout(function(){b.textContent='複製';b.classList.remove('done')},1400)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,function(){b.textContent='請手動選取'})}else{b.textContent='請手動選取'}
+  }});
+  // 目錄高亮
+  var links=[].slice.call(document.querySelectorAll('.toc a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;
+      links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id)})})},{rootMargin:'-20% 0px -70% 0px'});
+    links.forEach(function(a){var el=document.getElementById(a.getAttribute('href').slice(1));if(el)io.observe(el)});
+  }
+
+  // ===== 學習單：彈性填寫欄位（2026-09-22 追加）=====
+  // localStorage 安全存取層：瀏覽器封鎖網站資料時整段不得拋錯（沿用 build_web_v8 的作法）
+  var KEY='w04-sheet', LS=(function(){
+    var ok=false;try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true}catch(e){}
+    return {ok:ok,
+      get:function(){if(!ok)return{};try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}},
+      set:function(o){if(!ok)return;try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}},
+      del:function(){if(!ok)return;try{localStorage.removeItem(KEY)}catch(e){}}};
+  })();
+  var DB=LS.get(), tmr=null;
+  function save(){clearTimeout(tmr);tmr=setTimeout(function(){LS.set(DB);flash()},250)}
+  var stat=document.getElementById('sstat');
+  function flash(){if(!stat||!LS.ok)return;var o=stat.textContent;stat.textContent='已儲存';
+    clearTimeout(flash.t);flash.t=setTimeout(function(){stat.textContent=o},1100)}
+  var saver=document.querySelector('.saver');
+  if(saver&&!LS.ok){saver.classList.add('off');
+    if(stat)stat.textContent='這個瀏覽器封鎖了網站資料，填寫不會被記住（其他功能不受影響）。列印或另存前請先確認內容還在。';
+    var cb=document.getElementById('clearall');if(cb)cb.disabled=true}
+
+  function grow(el){el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px'}
+  function growAll(){[].forEach.call(document.querySelectorAll('textarea'),grow)}
+
+  // 文字欄位：還原 → 自動長高 → 輸入即存
+  [].forEach.call(document.querySelectorAll('textarea.fin'),function(el){
+    var k=el.getAttribute('data-k');if(DB[k])el.value=DB[k];grow(el);
+    el.addEventListener('input',function(){grow(el);DB[k]=el.value;if(!el.value)delete DB[k];save()});
+  });
+  // 勾選框
+  [].forEach.call(document.querySelectorAll('input[type=checkbox][data-k]'),function(el){
+    var k=el.getAttribute('data-k');if(DB[k])el.checked=true;
+    el.addEventListener('change',function(){if(el.checked){DB[k]=1}else{delete DB[k]}save()});
+  });
+  // 評量格：點一下循環 v → △ → × → 空白
+  var CYC=['v','△','×'];
+  [].forEach.call(document.querySelectorAll('.rb'),function(b){
+    var k=b.getAttribute('data-k');
+    function paint(v){if(v){b.textContent=v;b.setAttribute('data-v',v)}else{b.textContent='·';b.removeAttribute('data-v')}}
+    paint(DB[k]);
+    b.onclick=function(){var i=CYC.indexOf(DB[k]||'');var nv=CYC[i+1]||'';
+      if(nv){DB[k]=nv}else{delete DB[k]}paint(nv);save()};
+  });
+  // 可增減列數的表格
+  [].forEach.call(document.querySelectorAll('.rep'),function(rep){
+    var k=rep.getAttribute('data-k'), nc=+rep.getAttribute('data-cols');
+    var tb=rep.querySelector('tbody');
+    var heads=[].map.call(rep.querySelectorAll('thead th'),function(th){
+      return th.textContent.replace(/"/g,'&quot;')}).slice(0,nc);
+    function cells(row,vals){
+      var h='';for(var c=0;c<nc;c++){h+='<td data-l="'+heads[c]+'"><textarea rows="1" data-c="'+c+'">'+
+        ((vals&&vals[c]?vals[c]:'').replace(/[&<>]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m]}))+'</textarea></td>'}
+      return h+'<td class="rmc"><button type="button" class="rm" aria-label="刪除這一列">✕</button></td>';
+    }
+    function collect(){
+      DB[k]=[].map.call(tb.rows,function(tr){return [].map.call(tr.querySelectorAll('textarea'),function(x){return x.value})});
+      if(!DB[k].some(function(r){return r.some(function(v){return v})}))delete DB[k];
+      save();
+    }
+    function addRow(vals){
+      var tr=tb.insertRow(-1);tr.innerHTML=cells(tr,vals);
+      [].forEach.call(tr.querySelectorAll('textarea'),function(x){grow(x);
+        x.addEventListener('input',function(){grow(x);collect()})});
+      tr.querySelector('.rm').onclick=function(){
+        if(tb.rows.length<=1){[].forEach.call(tr.querySelectorAll('textarea'),function(x){x.value='';grow(x)})}
+        else{tr.parentNode.removeChild(tr)}collect()};
+      return tr;
+    }
+    var saved=DB[k];
+    if(saved&&saved.length){saved.forEach(function(r){addRow(r)})}
+    else{for(var i=0;i<(+rep.getAttribute('data-start')||3);i++)addRow(null)}
+    rep.__add=function(vals){
+      var target=null;
+      for(var i=0;i<tb.rows.length&&!target;i++){
+        var has=[].some.call(tb.rows[i].querySelectorAll('textarea'),function(x){return x.value});
+        if(!has)target=tb.rows[i];
+      }
+      if(!target)target=addRow(null);
+      var xs=target.querySelectorAll('textarea');
+      vals.forEach(function(v,c){if(xs[c]){xs[c].value=v;grow(xs[c])}});
+      collect();return target;
+    };
+    rep.querySelector('.addr').onclick=function(){var tr=addRow(null);var f=tr.querySelector('textarea');if(f)f.focus()};
+  });
+  // 抽狀況卡（記錄者用）
+  var draw=document.getElementById('draw'), logb=document.getElementById('logdraw'), lastI=-1, curName='';
+  if(draw){draw.onclick=function(){
+    var cs=[].slice.call(document.querySelectorAll('.sit .card'));if(!cs.length)return;
+    var i=Math.floor(Math.random()*cs.length);
+    if(cs.length>1&&i===lastI)i=(i+1+Math.floor(Math.random()*(cs.length-1)))%cs.length;
+    lastI=i;
+    cs.forEach(function(c,j){c.classList.toggle('hit',j===i)});
+    curName=cs[i].querySelector('.cno').textContent+' '+cs[i].querySelector('.ct').textContent;
+    var out=document.getElementById('drawout');
+    if(out)out.textContent='抽到 '+curName;
+    if(logb){logb.hidden=false;logb.textContent='＋ 記到我的抽卡紀錄'}
+    cs[i].scrollIntoView({block:'nearest',behavior:'smooth'});
+  }}
+  if(logb){logb.onclick=function(){
+    var rep=document.querySelector('.rep[data-k="rep6"]');
+    if(!rep||!rep.__add||!curName)return;
+    rep.__add([curName]);
+    logb.textContent='已記入（在第四節（三））';
+    setTimeout(function(){logb.textContent='＋ 記到我的抽卡紀錄'},2200);
+  }}
+
+  // ===== W4-2（2026-09-29）三人一組：輪替表、角色選擇、計次 =====
+  var LET={a:'A',b:'B',c:'C'}, ROT={1:['a','b','c'],2:['b','c','a'],3:['c','a','b']},
+      RN={1:'第一輪',2:'第二輪',3:'第三輪'}, ROLES=['訪談者','受訪者','記錄者'];
+  function nmOf(p){var v=DB['n_'+p];return v?'（'+v+'）':''}
+  function paintRot(){
+    var me=DB.me, r=+DB.rnd||0;
+    [].forEach.call(document.querySelectorAll('#rot tbody tr'),function(tr){
+      var rr=+tr.getAttribute('data-r');
+      [].forEach.call(tr.querySelectorAll('td'),function(td){
+        var p=td.getAttribute('data-p');
+        td.textContent=LET[p]+nmOf(p);
+        td.classList.toggle('mine',me===p);
+        td.classList.toggle('me',me===p&&r===rr);
+      });
+    });
+    [].forEach.call(document.querySelectorAll('.roles .card'),function(c){c.classList.remove('hit')});
+    var out=document.getElementById('myrole');if(!out)return;
+    if(!me||!r){out.textContent='選好「我是誰」和「現在第幾輪」，這裡會告訴你這一輪的角色。';return}
+    var idx=ROT[r].indexOf(me), o=ROT[r];
+    out.textContent='你是組員 '+LET[me]+nmOf(me)+'，'+RN[r]+'擔任「'+ROLES[idx]+'」。這一輪的訪談者是 '+LET[o[0]]+nmOf(o[0])+
+      '，受訪者是 '+LET[o[1]]+nmOf(o[1])+'，記錄者是 '+LET[o[2]]+nmOf(o[2])+'。';
+    var card=document.querySelector('.roles .card[data-role="'+ROLES[idx]+'"]');if(card)card.classList.add('hit');
+  }
+  [].forEach.call(document.querySelectorAll('textarea.nin'),function(el){
+    var k=el.getAttribute('data-k');if(DB[k])el.value=DB[k];grow(el);
+    el.addEventListener('input',function(){grow(el);var v=el.value.trim();if(v){DB[k]=v}else{delete DB[k]}save();paintRot()});
+  });
+  function paintSeg(seg){
+    var k=seg.getAttribute('data-k');
+    [].forEach.call(seg.querySelectorAll('button'),function(b){
+      b.setAttribute('aria-pressed',String(String(DB[k]||'')===b.getAttribute('data-v')))});
+  }
+  [].forEach.call(document.querySelectorAll('.seg'),function(seg){
+    var k=seg.getAttribute('data-k');paintSeg(seg);
+    [].forEach.call(seg.querySelectorAll('button'),function(b){b.onclick=function(){
+      var v=b.getAttribute('data-v');
+      if(String(DB[k]||'')===v){delete DB[k]}else{DB[k]=v}
+      paintSeg(seg);paintRot();save()}});
+  });
+  function paintCnt(box){
+    var k=box.getAttribute('data-k');
+    box.querySelector('output').textContent=DB[k]||0;
+  }
+  [].forEach.call(document.querySelectorAll('.cnt'),function(box){
+    box.innerHTML='<button type="button" data-d="-1" aria-label="減一">−</button><output aria-live="polite">0</output><button type="button" data-d="1" aria-label="加一">＋</button>';
+    var k=box.getAttribute('data-k');paintCnt(box);
+    [].forEach.call(box.querySelectorAll('button'),function(b){b.onclick=function(){
+      var n=Math.max(0,(DB[k]||0)+(+b.getAttribute('data-d')));
+      if(n){DB[k]=n}else{delete DB[k]}paintCnt(box);save()}});
+  });
+  paintRot();
+  // 清除
+  var clr=document.getElementById('clearall');
+  if(clr)clr.onclick=function(){
+    if(!confirm('清除這一頁所有填寫內容？此動作無法復原。'))return;
+    DB={};LS.del();
+    [].forEach.call(document.querySelectorAll('textarea'),function(x){x.value='';grow(x)});
+    [].forEach.call(document.querySelectorAll('input[type=checkbox][data-k]'),function(x){x.checked=false});
+    [].forEach.call(document.querySelectorAll('.rb'),function(b){b.textContent='·';b.removeAttribute('data-v')});
+    [].forEach.call(document.querySelectorAll('textarea.nin'),function(x){x.value='';grow(x)});
+    [].forEach.call(document.querySelectorAll('.seg'),paintSeg);
+    [].forEach.call(document.querySelectorAll('.cnt'),paintCnt);
+    paintRot();
+    if(stat)stat.textContent='已清除';
+  };
+  // 字型載入後行高會變，重算一次高度；列印前也重算
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(growAll);
+  addEventListener('load',growAll);addEventListener('beforeprint',growAll);
+})();
+</script>
+</body>
+</html>
